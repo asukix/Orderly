@@ -16,10 +16,16 @@ class AppCoordinator {
     
     func start(){
         showLogin()
+//        showMenu()
     }
     
     private func showLogin(){
         let loginVm = LoginViewModel()
+        
+        loginVm.onLoginSuccess = { [weak self] in
+            self?.showMenu()
+        }
+        
         let loginVC = LoginViewController(viewModel: loginVm)
         
         navigationController.setViewControllers([loginVC], animated: false)
@@ -27,6 +33,9 @@ class AppCoordinator {
     }
     
     private func showMenu(){
+        let menuVM = DIContainer.shared.makeMenuViewModel(with: MenuItemModel.mockItems)
+        let menuVC = MenuViewController(viewModel: menuVM)
         
+        navigationController.setViewControllers([menuVC], animated: false)
     }
 }
