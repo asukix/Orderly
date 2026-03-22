@@ -36,6 +36,14 @@ class AppCoordinator {
         let menuVM = DIContainer.shared.makeMenuViewModel(with: MenuItemModel.mockItems)
         let menuVC = MenuViewController(viewModel: menuVM)
         
+        menuVC.onItemSelected = { [weak self] item in
+            self?.showMenuDetail(for: item)
+        }
+        
         navigationController.setViewControllers([menuVC], animated: false)
+    }
+    
+    private func showMenuDetail(for item: MenuItemModel){
+        
     }
 }

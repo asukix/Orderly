@@ -12,6 +12,7 @@ class MenuViewController: UIViewController {
     let titleLabel = UILabel()
     let itemInfoTable = UITableView()
     private var cancellables = Set<AnyCancellable>()
+    var onItemSelected: ((MenuItemModel) -> Void)?
     
     lazy var verticalPadding: CGFloat = {
         VCConstants.verticalPadding
@@ -74,6 +75,7 @@ extension MenuViewController {
         itemInfoTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding).isActive = true
         
         itemInfoTable.dataSource = self
+        itemInfoTable.delegate = self
     }
 }
 
@@ -86,5 +88,11 @@ extension MenuViewController: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.textLabel?.text = viewModel.items[indexPath.row].name
         return cell
+    }
+}
+
+extension MenuViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onItemSelected?(viewModel.items[indexPath.row])
     }
 }
