@@ -15,8 +15,8 @@ class AppCoordinator {
     }
     
     func start(){
-        showLogin()
-//        showMenu()
+//        showLogin()
+        showMenu()
     }
     
     private func showLogin(){
