@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class AppCoordinator {
     private var navigationController: UINavigationController
@@ -44,6 +45,10 @@ class AppCoordinator {
     }
     
     private func showMenuDetail(for item: MenuItemModel){
+        let menuDetailsVM = DIContainer.shared.makeMenuDetailsViewModel(for: item)
+        let detailsView = MenuDetailsView(vm: menuDetailsVM)
+        let hostingController = UIHostingController(rootView: detailsView)
         
+        navigationController.pushViewController(hostingController, animated: true)
     }
 }

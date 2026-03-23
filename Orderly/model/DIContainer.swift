@@ -31,6 +31,18 @@ class DIContainer {
         )
     }
     
+    func makeMenuDetailsViewModel(for menuItem: MenuItemModel) -> MenuDetailsViewModel {
+        let repository = makeMenuItemRepository(with: [menuItem])
+        let incrementUseCase = makeIncrementUseCase(repository: repository)
+        let decrementUseCase = makeDecrementUseCase(repository: repository)
+        
+        return MenuDetailsViewModel(
+            model: menuItem,
+            incrementUseCase: incrementUseCase,
+            decrementUseCase: decrementUseCase
+        )
+    }
+    
     // MARK: - Private Factory Methods
     
     private func makeMenuItemRepository(with items: [MenuItemModel]) -> MenuItemRepository {
