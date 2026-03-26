@@ -128,8 +128,11 @@ extension LoginViewController {
         view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding).isActive = true
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding)
+        ])
         
         titleLabel.text = "Login to Orderly"
         titleLabel.font = .preferredFont(forTextStyle: .headline)
@@ -137,10 +140,12 @@ extension LoginViewController {
     
     private func setButtonDefaults() {
         view.addSubview(loginButton)
-        
+                
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding).isActive = true
+        NSLayoutConstraint.activate([
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding)
+        ])
         
         loginButton.setTitle("Login", for: .normal)
     }
@@ -149,9 +154,11 @@ extension LoginViewController {
         view.addSubview(inputStack)
         
         inputStack.translatesAutoresizingMaskIntoConstraints = false
-        inputStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding).isActive = true
-        inputStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding).isActive = true
-        inputStack.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding).isActive = true
+        NSLayoutConstraint.activate([
+            inputStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontalPadding),
+            inputStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontalPadding),
+            inputStack.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding)
+        ])
         
         passwordField.isSecureTextEntry = true
     }

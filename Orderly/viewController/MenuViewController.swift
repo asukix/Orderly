@@ -59,8 +59,12 @@ extension MenuViewController {
         view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding).isActive = true
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: verticalPadding)
+        ])
+        
         titleLabel.text = "Menu"
         titleLabel.font = .preferredFont(forTextStyle: .headline)
     }
@@ -69,10 +73,13 @@ extension MenuViewController {
         view.addSubview(itemInfoTable)
         
         itemInfoTable.translatesAutoresizingMaskIntoConstraints = false
-        itemInfoTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: verticalPadding).isActive = true
-        itemInfoTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -verticalPadding).isActive = true
-        itemInfoTable.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding).isActive = true
-        itemInfoTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding).isActive = true
+        
+        NSLayoutConstraint.activate([
+            itemInfoTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: verticalPadding),
+            itemInfoTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -verticalPadding),
+            itemInfoTable.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalPadding),
+            itemInfoTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -verticalPadding)
+        ])
         
         itemInfoTable.dataSource = self
         itemInfoTable.delegate = self
